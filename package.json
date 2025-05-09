@@ -1,18 +1,20 @@
 {
   "name": "email-finder",
   "version": "1.0.0",
-  "main": "dist/email-finder.js",
+  "main": "dist/server.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/email-finder.js"
+    "start": "node dist/server.js",
+    "dev":   "ts-node server.ts"
   },
   "dependencies": {
     "express": "^5.1.0",
-    "axios": "^1.×",             // whatever version you need
-    "@supabase/supabase-js": "^2.×"
+    "axios": "^1.4.0",
+    "@supabase/supabase-js": "^2.0.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.1",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "ts-node": "^10.9.1"
   }
 }
