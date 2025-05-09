@@ -1,4 +1,4 @@
-import type { Request, Response }             from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import { createClient }                       from '@supabase/supabase-js';
 import axios                                   from 'axios';
 
@@ -166,7 +166,11 @@ async function getAuthorsFromOpenAlex(
 }
 
 // ─── API handler ───────────────────────────────────────────────────────────────
-export default async function handler(req: Request, res: Response) {
+export default async function handler(
+  req: Request, 
+  res: Response,
+  next: NextFunction
+) {
   console.time('[total]');
   if (req.method !== 'GET') {
     console.log('[handler] wrong method:', req.method);
