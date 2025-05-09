@@ -1,4 +1,4 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
+import type { Request, Response }             from 'express';
 import { createClient }                       from '@supabase/supabase-js';
 import axios                                   from 'axios';
 
@@ -166,7 +166,7 @@ async function getAuthorsFromOpenAlex(
 }
 
 // ─── API handler ───────────────────────────────────────────────────────────────
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req: Request, res: Response) {
   console.time('[total]');
   if (req.method !== 'GET') {
     console.log('[handler] wrong method:', req.method);
@@ -194,7 +194,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     console.log(`[handler] university: ${uni.name} (${uni.domain})`);
 
     const authors = await getAuthorsFromOpenAlex(uni.openalex_ror, topicId, 5);
-    console.log(`[loop] authors for ${uni.name}:`, authors.map(a => a.name));
+    console.log(
+      `[loop] authors for ${uni.name}:`,
+      authors.map((a: any) => a.name)
+    );
 
     for (const a of authors) {
       console.log(`[handler] processing author: ${a.name}`);
